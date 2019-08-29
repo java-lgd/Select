@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+ <tlib-version>1.1.2</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>lgd</short-name>  <!--标签的短名称（可以随意取） -->
+    <uri>/WEB-INF/tag</uri> <!--位置，用于引用 -->
+   <tag>
+      <name>selectbyarray</name>
+      <tag-class>tag.SelectByArray</tag-class>
+       <body-content>JSP</body-content>
+       <attribute>
+       <name>name</name>
+       <required>true</required> 
+       <type>java.lang.String</type>
+        </attribute>
+         <attribute>
+       <name>all</name>
+       <required>false</required> 
+       <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+       <name>current</name>
+       <required>false</required> 
+       <type>java.lang.Integer</type>
+       <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+       <name>items</name>
+       <required>true</required> 
+       <type>Ljava.lang.String</type>
+       <rtexprvalue>true</rtexprvalue>
+        </attribute>
+   </tag>
+   
+   
+    <tag>
+      <name>selectbylist</name>
+      <tag-class>tag.SelectByList</tag-class>
+       <body-content>JSP</body-content>
+       <attribute>
+       <name>name</name>
+       <required>true</required> 
+       <type>java.lang.String</type>
+        </attribute>
+         <attribute>
+       <name>all</name>
+       <required>false</required> 
+       <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+       <name>current</name>
+       <required>false</required> 
+       <type>java.lang.Integer</type>
+       <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+       <name>items</name>
+       <required>true</required> 
+       <type>java.util.List</type>
+       <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+       <name>myid</name>
+       <required>false</required> 
+       <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+       <name>myname</name>
+       <required>false</required> 
+       <type>java.lang.String</type>
+        </attribute>
+   </tag>
+   
+</taglib>
