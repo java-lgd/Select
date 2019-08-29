@@ -9,30 +9,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import entity.Book;
 import entity.Type;
+import service.Book_Service;
 import service.Type_Service;
 import utils.ReturnInfo;
+import utils.SqlUtils;
 
 @Controller
 @RequestMapping("Type")
 public class TypeController {
 	@Autowired
 	Type_Service service;
+	
+	@Autowired
+	Book_Service bservice;
 
 	@RequestMapping("index")
-	public String   index1(Integer opt,String txt,Integer status,Integer page,Integer limit,ModelMap m) {
-		String txt1="";
-		if(opt!=null&&opt==1)
-			txt1=" where type.status="+status;
-		else
-		if(txt!=null&&txt.length()>0)
-			txt1=" where type.name like '%"+txt+"%'";
+	public String   index(Type t,Integer page,Integer limit,ModelMap m) {
+		String txt1=SqlUtils.ObjectTowhere(t, "type");		
 		m.put("list",service.select(txt1,page,limit)) ;
-		m.put("statuslist", Type.statuslist);
-		m.put("opt", opt);
-		m.put("status", status);
-		m.put("txt", txt);
+		List<Book> list=bservice.select("", null, null).getList();
+		m.put("booklist",list );
+		//获取最新的bookid
+		int bookid=t.getBookid();
+		if(bookid==0) bookid=list.get(0).getId();
+		//
+		m.put("typelist", service.select(" where type.bookid="+bookid, null, null).getList());
+		m.put("info", t);
 		return "Type/index";
+	}
+	@RequestMapping("gettypess")
+	public @ResponseBody List  gettypess(int id,ModelMap m) {
+		return service.select(" where type.bookid="+id, null, null).getList();
 	}
 	
 	@RequestMapping("insert")

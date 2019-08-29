@@ -17,7 +17,7 @@ public interface Book_Dao {
 	@Select("select count(1) from Book inner join type on type.id=book.typeid  ${txt} ")
 	public int selectCount(@Param("txt") String txt);
 	
-	@Select("select Book.*,type.name typename from Book inner join type on type.id=book.typeid  ${txt} ${limit}")
+	@Select("select *  from Book ${txt} ${limit}")
 	public List<Book> select(@Param("txt") String txt,@Param("limit") String limit) ;
 	
 	@Select("select * from Book where id=#{id}")
