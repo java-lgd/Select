@@ -10,9 +10,10 @@
 </head>
 <body>
 <form action="index" method="post">
-<m:selectbyarray items="${statuslist}" name="txt"  current="${status}"></m:selectbyarray>
 
-<m:selectbylist items="${list.list}" name="aa" current="2" ></m:selectbylist>
+<m:selectbyarray items="${statuslist}" name="txt"  all="true" current="${status}"></m:selectbyarray>
+
+<m:selectbylist items="${list.list}" name="aa"  current="1" ></m:selectbylist>
 <input type="submit">
 </form>
 <c:forEach items="${list.list}" var="row">
