@@ -7,13 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<script type="text/javascript" src="../js/jquery-2.2.4.min.js"></script>
 </head>
 <body>
-<form action="index" method="post">
+<script type="text/javascript">
+ 	var s="${opt}";
+	function chan(o){
+		if(o.value==0){
+			a1.style.display="inline";
+			a2.style.display="none";
+		}else{
+			a2.style.display="inline";
+			a1.style.display="none";
+		}
+	}
+	
+	$(function(){
+ 		$("[name=opt]").val(s.length>0?s:0);
+// 		var a = $("[name=opt]").attr("cur");
+// 		$("[name=opt]").val(a?a:0);
+		if(s.length==0||s==0){
+			a1.style.display="inline";
+			a2.style.display="none";
+		}else{
+			a2.style.display="inline";
+			a1.style.display="none";
+		}
+	})
+</script>
 
-<m:selectbyarray items="${statuslist}" name="txt"  all="true" current="${status}"></m:selectbyarray>
+<form action="index" method="post" entype="application/json">
 
-<m:selectbylist items="${list.list}" name="aa"  current="1" ></m:selectbylist>
+<select name="opt" onchange="chan(this)" cur="${opt }">
+	<option value="0">名称查询</option>
+	<option value="1">状态查询</option>
+</select>
+<input name="txt" id="a1" value="${txt}">
+<select name="status" id="a2" style="display:none">
+	<c:set var="all" value="true" scope="request"></c:set>
+	<c:set var="optionlist" value="${statuslist}" scope="request"></c:set>
+	<c:set var="current" value="${status}" scope="request"></c:set>
+	<c:import url="../select_model/select.jsp"></c:import>
+</select>
 <input type="submit">
 </form>
 <c:forEach items="${list.list}" var="row">

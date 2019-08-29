@@ -18,18 +18,20 @@ import utils.ReturnInfo;
 public class TypeController {
 	@Autowired
 	Type_Service service;
-	
 
-	
-	
 	@RequestMapping("index")
-	public String   index(@RequestParam(defaultValue="-1",required=false)int  txt,Integer page,Integer limit,ModelMap m) {
+	public String   index1(Integer opt,String txt,Integer status,Integer page,Integer limit,ModelMap m) {
 		String txt1="";
-		if(txt>-1) 
-		txt1=" where type.status ="+txt;
+		if(opt!=null&&opt==1)
+			txt1=" where type.status="+status;
+		else
+		if(txt!=null&&txt.length()>0)
+			txt1=" where type.name like '%"+txt+"%'";
 		m.put("list",service.select(txt1,page,limit)) ;
 		m.put("statuslist", Type.statuslist);
-		m.put("status", txt);
+		m.put("opt", opt);
+		m.put("status", status);
+		m.put("txt", txt);
 		return "Type/index";
 	}
 	
@@ -38,6 +40,11 @@ public class TypeController {
 		service.insert(b);
 		return index(0, null, null, m);
 	}
+	private String index(int i, Object object, Object object2, ModelMap m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@RequestMapping("update")
 	public   String  update(Type b,ModelMap m) {
 		service.update(b);

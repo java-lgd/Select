@@ -41,7 +41,7 @@
          <property name="maxInMemorySize" value="4096" />
          <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
-    
+     
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"  />

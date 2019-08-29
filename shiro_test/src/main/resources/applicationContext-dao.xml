@@ -13,7 +13,7 @@
 
 	<!-- 加载配置文件 -->
 	<context:property-placeholder location="classpath:db.properties" />
-
+ 
 	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />
